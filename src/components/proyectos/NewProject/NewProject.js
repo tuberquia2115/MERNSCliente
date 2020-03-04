@@ -1,29 +1,70 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import proyectoContext from '../../../context/proyectoContext';
 const NewProject = () => {
+
+
+    // obtener el state del formulario
+    const proyectosContext = useContext(proyectoContext)
+    const { formulario } = proyectosContext;
+    // state para proyecto
+    const [proyecto, guardarProyecto] = useState({
+        nombre: ''
+    });
+
+    const { nombre } = proyecto
+
+    const handleChange = (e) => {
+        guardarProyecto({
+            ...proyecto, [e.target.name]: e.target.value
+        })
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        // validar proyecto
+
+
+        // agregar al state
+
+
+        // Reiniciar el formulario
+
+    }
     return (
         <React.Fragment>
             <button
                 type="button"
                 className="btn btn-block btn-primario"
-            >Nuevos Proyecto</button>
+            >Nuevo Proyecto</button>
 
-            <form
-                className="formulario-nuevo-proyecto"
-            >
-                <input
-                    type="text"
-                    className="input-text"
-                    placeholder="Nombre del proyecto"
-                    name="nombre"
-                />
+            {formulario ?
+                (
+                    <form
+                        onSubmit={handleSubmit}
+                        className="formulario-nuevo-proyecto"
+                    >
+                        <input
+                            type="text"
+                            className="input-text"
+                            placeholder="Nombre del proyecto"
+                            name="nombre"
+                            value={nombre}
+                            onChange={handleChange}
+                        />
 
-                <input
-                    className="btn btn-primario btn-block"
-                    type="submit"
-                    value="Agregar Proyecto"
-                />
+                        <input
+                            className="btn btn-primario btn-block"
+                            type="submit"
+                            value="Agregar Proyecto"
+                        />
 
-            </form>
+                    </form>
+                )
+                : null
+            
+            }
+
         </React.Fragment>
     )
 }
