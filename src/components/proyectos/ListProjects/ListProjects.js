@@ -11,12 +11,12 @@ const ListProjects = () => {
     const { proyectos, obtenerProyectos } = proyectosContext;
 
 
-// obtener pro
+    // obtener pro
     useEffect(() => {
         obtenerProyectos()
     }, [])
     // revisar si proyectos tiene contenidos
-    if (proyectos.length === 0) return null;
+    if (proyectos.length === 0) return <p>No hay proyectos, comienza creando uno</p>;
     return (
         <ul className="listado-proyectos">
             {Array.isArray(proyectos) && proyectos.map(proyecto => (
