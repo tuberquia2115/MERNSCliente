@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Tarea from '../Tarea/Tarea';
+import ProyectoContext from '../../../context/proyectoContext';
 
 const ListadoTareas = () => {
+
+
+    const proyectosContext = useContext(ProyectoContext)
+    const { proyecto } = proyectosContext;
     const tareasProyecto = [
         { nombre: 'Elegir plataforma', estado: true },
         { nombre: 'Elegir colores', estado: false },
@@ -10,7 +15,7 @@ const ListadoTareas = () => {
     ]
     return (
         <React.Fragment>
-            <h2>Proyecto: Tienda Virtual</h2>
+            <h2>Proyecto: {proyecto[0]}</h2>
             <ul className="listado-tareas">
                 {tareasProyecto.length === 0
                     ? (<li className="tarea">No hay tareas</li>)
