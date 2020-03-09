@@ -7,9 +7,11 @@ const ListadoTareas = () => {
 
     // Extraer proyectos de state inicial
     const proyectosContext = useContext(ProyectoContext)
-    const tareasContext = useContext(TareaContext);
     const { proyecto, eliminarProyecto } = proyectosContext;
-    const { tareas } = tareasContext;
+
+    // Extrayendo las tareas del context de tarea
+    const tareasContext = useContext(TareaContext);
+    const { tareasproyecto } = tareasContext;
 
     // Si no hay proyecto seleccionado
 
@@ -18,7 +20,7 @@ const ListadoTareas = () => {
     // array destructuring para extraer el proyectos actual
     const [proyectoActual] = proyecto;
 
-    const tareasProyecto = []
+    
 
     const onClickEliminar = () => {
         eliminarProyecto(proyectoActual.id)
@@ -27,9 +29,9 @@ const ListadoTareas = () => {
         <React.Fragment>
             <h2>Proyecto: {proyectoActual.nombre}</h2>
             <ul className="listado-tareas">
-                {tareasProyecto.length === 0
+                {tareasproyecto.length === 0
                     ? (<li className="tarea">No hay tareas</li>)
-                    : Array.isArray(tareasProyecto) && tareasProyecto.map(tarea => (
+                    : Array.isArray(tareasproyecto) && tareasproyecto.map(tarea => (
                         <Tarea tarea={tarea} />
                     ))
                 }
