@@ -1,15 +1,15 @@
 import React, { useReducer } from 'react';
 import * as uuid from 'uuid';
-import ProyectoContext from './proyectoContext';
-import proyectoReducer from './proyectoReducer'
+import ProyectoContext from '../proyecto/proyectoContext';
+import proyectoReducer from '../proyecto/proyectoReducer'
 import {
     FORMULARIO_PROYECTO,
     OBTENER_PROYECTOS,
     AGREGAR_PROYECTO,
     VALIDAR_FORMULARIO,
     PROYECTO_ACTUAL,
-    ELIMINAR_PROYECTO
-} from '../types'
+    ELIMINAR_PROYECTO,
+} from '../../types'
 
 
 const ProyectoState = (props) => {
@@ -19,11 +19,13 @@ const ProyectoState = (props) => {
         { id: 3, nombre: 'Diseño de sitio web' },
         { id: 4, nombre: 'MERN' },
     ]
+
+    
     const initialState = {
         proyectos: [],
         formulario: false,
         errorformulario: false,
-        proyecto: null
+        proyecto: null,
     }
     // dispatch  para ejecutar la acciones
     const [state, dispatch] = useReducer(proyectoReducer, initialState);
@@ -73,6 +75,8 @@ const ProyectoState = (props) => {
             payload: proyectoId
         })
     }
+
+    
     return (
         <ProyectoContext.Provider
             value={{
@@ -85,7 +89,8 @@ const ProyectoState = (props) => {
                 agregarProyecto,
                 mostrarError,
                 proyectoActual,
-                eliminarProyecto
+                eliminarProyecto,
+               
             }}
         >
             {props.children}

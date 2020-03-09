@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect } from 'react';
-import proyectoContext from '../../../context/proyectoContext'
+import proyectoContext from '../../../context/proyecto/proyectoContext'
 import Project from '../Project/Project';
 
 
