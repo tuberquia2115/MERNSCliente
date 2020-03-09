@@ -2,7 +2,9 @@ import React, { useReducer } from 'react'
 import tareaReducer from './tareaReducer'
 import TareaContext from './tareaContext';
 import {
-    TAREAS_PROYECTO, AGREGAR_TAREA
+    TAREAS_PROYECTO,
+    AGREGAR_TAREA,
+    VALIDAR_TAREA
 } from '../../types';
 
 
@@ -25,7 +27,8 @@ const TareaState = (props) => {
             { nombre: 'Elegir plataformas de pagos', estado: false, proyectoId: 3 },
 
         ],
-        tareasproyecto: null
+        tareasproyecto: null,
+        errortarea: false
     }
     // creado el dispatch y el state
     const [state, dispatch] = useReducer(tareaReducer, initialState);
@@ -47,13 +50,23 @@ const TareaState = (props) => {
             payload: tarea
         })
     }
+
+    // VALIDA Y MUESTRA UN ERROR
+
+    const validarTarea = () => {
+        dispatch({
+            type: VALIDAR_TAREA
+        })
+    }
     return (
         <TareaContext.Provider
             value={{
                 tareas: state.tareas,
                 tareasproyecto: state.tareasproyecto,
+                errortarea: state.errortarea,
                 obtenerTareas,
-                agregarTarea
+                agregarTarea,
+                validarTarea
             }}
         >
             {props.children}
