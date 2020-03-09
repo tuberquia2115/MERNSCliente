@@ -20,7 +20,7 @@ const ListadoTareas = () => {
     // array destructuring para extraer el proyectos actual
     const [proyectoActual] = proyecto;
 
-    
+
 
     const onClickEliminar = () => {
         eliminarProyecto(proyectoActual.id)
@@ -32,7 +32,9 @@ const ListadoTareas = () => {
                 {tareasproyecto.length === 0
                     ? (<li className="tarea">No hay tareas</li>)
                     : Array.isArray(tareasproyecto) && tareasproyecto.map(tarea => (
-                        <Tarea tarea={tarea} />
+                        <Tarea
+                            key={tarea.id}
+                            tarea={tarea} />
                     ))
                 }
 
