@@ -14,7 +14,7 @@ export default (state, action) => {
         case AGREGAR_PROYECTO:
             return {
                 ...state,
-                proyectos: [...state.proyectos, action.payload],
+                proyectos: [action.payload, ...state.proyectos],
                 formulario: false,
                 errorformulario: false
 
@@ -33,7 +33,7 @@ export default (state, action) => {
                 ...state,
                 proyectos: state.proyectos.filter(proyecto => proyecto.id !==
                     action.payload),
-                    proyecto: null
+                proyecto: null
             }
         default:
             return state;

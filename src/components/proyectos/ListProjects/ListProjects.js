@@ -2,6 +2,7 @@
 import React, { useContext, useEffect } from 'react';
 import proyectoContext from '../../../context/proyecto/proyectoContext'
 import Project from '../Project/Project';
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 
 const ListProjects = () => {
@@ -19,11 +20,18 @@ const ListProjects = () => {
     if (proyectos.length === 0) return <p>No hay proyectos, comienza creando uno</p>;
     return (
         <ul className="listado-proyectos">
-            {Array.isArray(proyectos) && proyectos.map(proyecto => (
-                <Project
-                    key={proyecto.id}
-                    project={proyecto} />
-            ))}
+            <TransitionGroup>
+                {Array.isArray(proyectos) && proyectos.map(proyecto => (
+                    <CSSTransition
+                        key={proyecto.id}
+                        timeout={300}
+                        classNames="proyecto"
+                    >
+                        <Project
+                            project={proyecto} />
+                    </CSSTransition>
+                ))}
+            </TransitionGroup>
         </ul>
     )
 }
