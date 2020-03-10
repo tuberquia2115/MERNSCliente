@@ -3,6 +3,7 @@ import TareaContext from '../../../context/tareas/tareaContext';
 import ProyectoContext from '../../../context/proyecto/proyectoContext'
 
 const Tarea = ({ tarea }) => {
+    console.log("esta es la tarea", tarea);
 
     // Extraer el proyecto que se encuentra en activo
 
@@ -11,7 +12,7 @@ const Tarea = ({ tarea }) => {
 
     // obtener la función del context de tarea
     const tareasContext = useContext(TareaContext);
-    const { cambiarEstadoTarea, obtenerTareas, eliminarTarea } = tareasContext;
+    const { cambiarEstadoTarea, obtenerTareas, eliminarTarea, guardarTareaActual } = tareasContext;
 
     const [proyectoActual] = proyecto
 
@@ -28,6 +29,12 @@ const Tarea = ({ tarea }) => {
             tarea.estado = true;
         }
         cambiarEstadoTarea(tarea);
+    }
+
+
+    // Agregar una tarea actual cuando el usuario quiera editarla
+    const seleccionarTarea = tarea => {
+        guardarTareaActual(tarea);
     }
     return (
         <li className="tarea sombra">
@@ -57,6 +64,9 @@ const Tarea = ({ tarea }) => {
                 <button
                     type="button"
                     className="btn btn-primario"
+                    onClick={() => (
+                        seleccionarTarea(tarea)
+                    )}
                 >Editar</button>
                 <button
                     type="button"
