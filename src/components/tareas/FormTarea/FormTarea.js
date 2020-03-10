@@ -13,7 +13,15 @@ const FormTarea = () => {
 
     // Extraer la función del context de tareas
     const tareasContext = useContext(TareaContext);
-    const { tareaseleccionada, errortarea, agregarTarea, validarTarea, obtenerTareas, actualizarTarea } = tareasContext;
+    const {
+        tareaseleccionada,
+        errortarea,
+        agregarTarea,
+        validarTarea,
+        obtenerTareas,
+        actualizarTarea,
+        limpiarTarea,
+    } = tareasContext;
 
     // useState para guardar la tarea
     const [tarea, guardarTarea] = useState({
@@ -60,7 +68,10 @@ const FormTarea = () => {
             agregarTarea(tarea)
         } else {
             // actualizar tarea
-            actualizarTarea(tarea)
+            actualizarTarea(tarea);
+
+            // Elimina tarea seleccionada del state
+            limpiarTarea()
         }
         // obtener y limpiar las tareas del proyecto  actual
 

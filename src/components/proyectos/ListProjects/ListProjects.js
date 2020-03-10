@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useContext, useEffect } from 'react';
 import proyectoContext from '../../../context/proyecto/proyectoContext'
 import Project from '../Project/Project';
@@ -15,6 +15,7 @@ const ListProjects = () => {
     // obtener pro
     useEffect(() => {
         obtenerProyectos()
+        //eslint-disable-next-line
     }, [])
     // revisar si proyectos tiene contenidos
     if (proyectos.length === 0) return <p>No hay proyectos, comienza creando uno</p>;

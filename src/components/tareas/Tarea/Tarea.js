@@ -3,7 +3,6 @@ import TareaContext from '../../../context/tareas/tareaContext';
 import ProyectoContext from '../../../context/proyecto/proyectoContext'
 
 const Tarea = ({ tarea }) => {
-    console.log("esta es la tarea", tarea);
 
     // Extraer el proyecto que se encuentra en activo
 
