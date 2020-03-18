@@ -34,8 +34,7 @@ const AuthState = props => {
                 type: REGISTRO_EXITOSO,
                 payload: respuesta.data
             })
-
-
+            usuarioAutenticado()
         } catch (error) {
             console.log(error.response.data.msg);
             const alerta = {
@@ -47,6 +46,24 @@ const AuthState = props => {
                 payload: alerta
             })
         }
+    }
+
+    // retorna el usuario autenticado
+    const usuarioAutenticado = async () => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            // TODO: función para enviar el token por headers
+        }
+
+        try {
+            const respuesta = await clienteAxios.get('/api/auth');
+            console.log("respuesta de la función de usuarioAutenticado", respuesta);
+        } catch (error) {
+            dispatch({
+                type: LOGIN_ERROR
+            })
+        }
+
     }
 
     return (
