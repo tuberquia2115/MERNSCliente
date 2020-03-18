@@ -1,10 +1,11 @@
-import React, { useState, useContext, } from 'react';
+import React, { useState, useContext, useEffect, } from 'react';
 import { Link } from 'react-router-dom'
 import AlertaContext from '../../../context/alertas/alertasContext';
 import AuthContext from '../../../context/autenticacion/authContext';
 
 
-const Register = () => {
+const Register = (props) => {
+    const { history } = props
 
     // Extraer el state de alertContext
     const alertaContext = useContext(AlertaContext);
@@ -13,7 +14,20 @@ const Register = () => {
     // Extraer state del context de AuthContext
 
     const authContext = useContext(AuthContext);
-    const { registraUsuario } = authContext
+    const { mensaje, autenticado, registraUsuario } = authContext;
+
+
+    // en caso que el usuario se haya autenticado o sea un registro duplicado
+
+    useEffect(() => {
+        if (autenticado) {
+            history.push('/projects');
+        }
+        if (mensaje) {
+            mostrarAlerta(mensaje.msg, mensaje.categoria)
+        }
+
+    }, [mensaje, autenticado, history])
 
     // state para iniciar sesión
     const [usuario, guardarUsuario] = useState({
