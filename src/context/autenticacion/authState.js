@@ -10,6 +10,7 @@ import {
     LOGIN_ERROR,
     CERRAR_SESION,
 } from "../../types";
+import tokenAuth from '../../config/tokenAuth';
 
 const AuthState = props => {
 
@@ -52,12 +53,15 @@ const AuthState = props => {
     const usuarioAutenticado = async () => {
         const token = localStorage.getItem('token');
         if (token) {
-            // TODO: función para enviar el token por headers
+            tokenAuth(token);
         }
 
         try {
             const respuesta = await clienteAxios.get('/api/auth');
-            console.log("respuesta de la función de usuarioAutenticado", respuesta);
+            dispatch({
+                type: OBTENER_USUARIO,
+                payload: respuesta.data.usuario
+            })
         } catch (error) {
             dispatch({
                 type: LOGIN_ERROR
