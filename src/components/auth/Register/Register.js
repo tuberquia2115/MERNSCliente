@@ -1,6 +1,8 @@
 import React, { useState, useContext, } from 'react';
 import { Link } from 'react-router-dom'
 import AlertaContext from '../../../context/alertas/alertasContext';
+import AuthContext from '../../../context/autenticacion/authContext';
+
 
 const Register = () => {
 
@@ -8,6 +10,10 @@ const Register = () => {
     const alertaContext = useContext(AlertaContext);
     const { alerta, mostrarAlerta } = alertaContext;
 
+    // Extraer state del context de AuthContext
+
+    const authContext = useContext(AuthContext);
+    const { registraUsuario } = authContext
 
     // state para iniciar sesión
     const [usuario, guardarUsuario] = useState({
@@ -43,6 +49,11 @@ const Register = () => {
             mostrarAlerta("Los password no son iguales", 'alerta-error')
         }
 
+        registraUsuario({
+            nombre,
+            email,
+            password
+        })
         // pasar al action
     }
     return (
