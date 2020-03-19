@@ -139,6 +139,10 @@ aside {
   background-color: var(--gris1);
 }
 
+.cerrar-sesion{
+  color: var(--blanco);
+  font-size: 20px;
+}
 .formulario-nuevo-proyecto .input-text::placeholder {
   color: var(--gris2);
 }
