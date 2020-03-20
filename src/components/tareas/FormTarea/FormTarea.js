@@ -46,6 +46,7 @@ const FormTarea = () => {
     // array destructuring para extraer el proyectos actual
     const [proyectoActual] = proyecto;
 
+    console.log("proyecto actual", proyectoActual)
     // capturar el nombre de la tarea
     const handleChange = (e) => {
         guardarTarea({
@@ -63,8 +64,7 @@ const FormTarea = () => {
         // si es edición o si es nueva tarea
         if (tareaseleccionada === null) {
             //agregar la nueva tarea al state de tareas
-            tarea.proyectoId = proyectoActual.id
-            tarea.estado = false
+            tarea.proyecto = proyectoActual._id;
             agregarTarea(tarea)
         } else {
             // actualizar tarea
@@ -75,7 +75,7 @@ const FormTarea = () => {
         }
         // obtener y limpiar las tareas del proyecto  actual
 
-        obtenerTareas(proyectoActual.id);
+        obtenerTareas(proyectoActual._id);
 
         // limpiar el state
         guardarTarea({
