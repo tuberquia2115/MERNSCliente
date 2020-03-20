@@ -8,6 +8,7 @@ import TareasState from './context/tareas/tareaState';
 import AlertaState from './context/alertas/alertaState';
 import AuthState from './context/autenticacion/authState';
 import tokenAuth from './config/tokenAuth';
+import RutaPrivada from './components/ruta/rutaPrivada';
 
 const token = localStorage.getItem('token');
 
@@ -25,7 +26,7 @@ function App() {
               <Switch>
                 <Route exact path="/" component={Login} />
                 <Route exact path="/register" component={Register} />
-                <Route exact path="/projects" component={Projects} />
+                <RutaPrivada exact path="/projects" component={Projects} />
               </Switch>
             </Router>
           </AuthState>
