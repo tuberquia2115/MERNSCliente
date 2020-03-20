@@ -61,10 +61,16 @@ const TareaState = (props) => {
     }
 
     // Eliminar tarea por su id
-    const eliminarTarea = tareaId => {
+    const eliminarTarea = async (id, proyecto) => {
+
+        try {
+            await clienteAxios.delete(`/api/tareas/${id}`, { params: { proyecto } })
+        } catch (error) {
+            console.log(error)
+        }
         dispatch({
             type: ELIMINAR_TAREA,
-            payload: tareaId
+            payload: id
         })
     }
 
