@@ -5,6 +5,7 @@ import {
     FORMULARIO_PROYECTO,
     OBTENER_PROYECTOS,
     AGREGAR_PROYECTO,
+    PROYECTO_ERROR,
     VALIDAR_FORMULARIO,
     PROYECTO_ACTUAL,
     ELIMINAR_PROYECTO,
@@ -19,6 +20,7 @@ const ProyectoState = (props) => {
         formulario: false,
         errorformulario: false,
         proyecto: null,
+        mensaje: null
     }
     // dispatch  para ejecutar la acciones
     const [state, dispatch] = useReducer(proyectoReducer, initialState);
@@ -39,7 +41,14 @@ const ProyectoState = (props) => {
                 payload: resultado.data.proyectos
             })
         } catch (error) {
-            console.log(error);
+            const alerta = {
+                msg: 'Hubo un error',
+                categoria: 'alerta-error'
+            }
+            dispatch({
+                type: PROYECTO_ERROR,
+                payload: alerta
+            })
         }
     }
     // Agregar nuevo proyectos
@@ -53,13 +62,16 @@ const ProyectoState = (props) => {
                 payload: resultado.data
             })
         } catch (error) {
-
-
+            const alerta = {
+                msg: 'Hubo un error',
+                categoria: 'alerta-error'
+            }
+            dispatch({
+                type: PROYECTO_ERROR,
+                payload: alerta
+            })
         }
-        dispatch({
-            type: AGREGAR_PROYECTO,
-            payload: proyecto
-        })
+
     }
 
     // validar formulario por errores
@@ -87,7 +99,14 @@ const ProyectoState = (props) => {
                 payload: proyectoId
             })
         } catch (error) {
-            console.log(error)
+            const alerta = {
+                msg: 'Hubo un error',
+                categoria: 'alerta-error'
+            }
+            dispatch({
+                type: PROYECTO_ERROR,
+                payload: alerta
+            })
         }
     }
 
@@ -99,6 +118,7 @@ const ProyectoState = (props) => {
                 formulario: state.formulario,
                 errorformulario: state.errorformulario,
                 proyecto: state.proyecto,
+                mensaje: state.mensaje,
                 obtenerProyectos,
                 mostrarFormulario,
                 agregarProyecto,
