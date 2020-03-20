@@ -24,7 +24,7 @@ const ListProjects = () => {
             <TransitionGroup>
                 {Array.isArray(proyectos) && proyectos.map(proyecto => (
                     <CSSTransition
-                        key={proyecto.id}
+                        key={proyecto._id}
                         timeout={300}
                         classNames="proyecto"
                     >
