@@ -3,7 +3,6 @@ import proyectoContext from '../../../context/proyecto/proyectoContext';
 import TareaContext from '../../../context/tareas/tareaContext';
 
 const Project = ({ project }) => {
-
     // obtener el state de proyectos
     const proyectosContext = useContext(proyectoContext);
 
@@ -24,7 +23,7 @@ const Project = ({ project }) => {
             <button
                 type="button"
                 className="btn btn-blank"
-                onClick={() => { seleccionarProyecto(project._id) }}
+                onClick={() => seleccionarProyecto(project._id)}
             >
                 {project.nombre}
             </button>

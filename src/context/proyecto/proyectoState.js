@@ -9,6 +9,7 @@ import {
     VALIDAR_FORMULARIO,
     PROYECTO_ACTUAL,
     ELIMINAR_PROYECTO,
+    CERRAR_SESION,
 } from '../../types'
 import clienteAxios from '../../config/axios'
 
@@ -35,7 +36,6 @@ const ProyectoState = (props) => {
     const obtenerProyectos = async () => {
         try {
             const resultado = await clienteAxios.get('/api/proyectos');
-            console.log(resultado);
             dispatch({
                 type: OBTENER_PROYECTOS,
                 payload: resultado.data.proyectos
@@ -110,6 +110,12 @@ const ProyectoState = (props) => {
         }
     }
 
+    // VACIAR PROYECTO SELECCIONADO
+    const vaciarProyecto = () => {
+        dispatch({
+            type: CERRAR_SESION
+        })
+    }
 
     return (
         <ProyectoContext.Provider
@@ -125,6 +131,7 @@ const ProyectoState = (props) => {
                 mostrarError,
                 proyectoActual,
                 eliminarProyecto,
+                vaciarProyecto
 
             }}
         >

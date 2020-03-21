@@ -13,6 +13,7 @@ const ListadoTareas = () => {
     // Extrayendo las tareas del context de tarea
     const tareasContext = useContext(TareaContext);
     const { tareasproyecto } = tareasContext;
+    console.log("estas son las tareas", tareasproyecto);
 
     // Si no hay proyecto seleccionado
 
@@ -20,7 +21,6 @@ const ListadoTareas = () => {
 
     // array destructuring para extraer el proyectos actual
     const [proyectoActual] = proyecto;
-
 
 
     const onClickEliminar = () => {
@@ -36,7 +36,7 @@ const ListadoTareas = () => {
                     <TransitionGroup>
                         {Array.isArray(tareasproyecto) && tareasproyecto.map(tarea => (
                             <CSSTransition
-                                key={tarea.id}
+                                key={tarea._id}
                                 timeout={300}
                                 classNames="tarea"
                             >

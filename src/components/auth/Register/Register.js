@@ -26,7 +26,7 @@ const Register = (props) => {
         if (mensaje) {
             mostrarAlerta(mensaje.msg, mensaje.categoria)
         }
-
+        // eslint-disable-next-line
     }, [mensaje, autenticado, history])
 
     // state para iniciar sesión
@@ -60,7 +60,8 @@ const Register = (props) => {
 
         // los 2 password sean iguales
         if (password !== confirmar) {
-            mostrarAlerta("Los password no son iguales", 'alerta-error')
+            mostrarAlerta("Los password no son iguales", 'alerta-error');
+            return;
         }
 
         registraUsuario({

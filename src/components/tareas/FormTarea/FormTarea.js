@@ -29,7 +29,6 @@ const FormTarea = () => {
     })
     // destructuring al array
     const { nombre } = tarea
-
     // Effect que detecta si hay una tarea seleccionada
     useEffect(() => {
         if (tareaseleccionada !== null) {
@@ -40,22 +39,22 @@ const FormTarea = () => {
             })
         }
     }, [tareaseleccionada])
+
     // Si no hay proyecto seleccionado
-    if (!proyecto) return null
+    if (!proyecto) return null;
 
     // array destructuring para extraer el proyectos actual
     const [proyectoActual] = proyecto;
 
-    console.log("proyecto actual", proyectoActual)
+    console.log("este es el proyecto actual", proyectoActual);
     // capturar el nombre de la tarea
-    const handleChange = (e) => {
+    const handleChange = e => {
         guardarTarea({
             ...tarea, [e.target.name]: e.target.value
         })
     }
     const onSubmitAgregarTarea = e => {
         e.preventDefault();
-
         // validad tarea
         if (nombre.trim() === '') {
             validarTarea()
@@ -65,18 +64,15 @@ const FormTarea = () => {
         if (tareaseleccionada === null) {
             //agregar la nueva tarea al state de tareas
             tarea.proyecto = proyectoActual._id;
-            agregarTarea(tarea)
+            agregarTarea(tarea);
         } else {
             // actualizar tarea
             actualizarTarea(tarea);
-
             // Elimina tarea seleccionada del state
             limpiarTarea()
         }
         // obtener y limpiar las tareas del proyecto  actual
-
-        obtenerTareas(proyectoActual._id);
-
+        obtenerTareas(proyectoActual.id);
         // limpiar el state
         guardarTarea({
             nombre: ''

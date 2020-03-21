@@ -14,7 +14,6 @@ import tokenAuth from '../../config/tokenAuth';
 
 const AuthState = props => {
 
-
     const initialState = {
         token: localStorage.getItem('token'),
         autenticado: null,
@@ -30,15 +29,12 @@ const AuthState = props => {
     const registraUsuario = async datos => {
         try {
             const respuesta = await clienteAxios.post('/api/usuarios', datos);
-            console.log(respuesta);
-
             dispatch({
                 type: REGISTRO_EXITOSO,
                 payload: respuesta.data
             })
             usuarioAutenticado()
         } catch (error) {
-            console.log(error.response.data.msg);
             const alerta = {
                 msg: error.response.data.msg,
                 categoria: 'alerta-error'
@@ -82,7 +78,6 @@ const AuthState = props => {
             // obtener el usuario
             usuarioAutenticado()
         } catch (error) {
-            console.log(error.response.data.msg)
             const alerta = {
                 msg: error.response.data.msg,
                 categoria: 'alerta-error'

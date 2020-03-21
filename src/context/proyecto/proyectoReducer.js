@@ -5,7 +5,8 @@ import {
     VALIDAR_FORMULARIO,
     PROYECTO_ACTUAL,
     ELIMINAR_PROYECTO,
-    PROYECTO_ERROR
+    PROYECTO_ERROR,
+    CERRAR_SESION
 } from '../../types'
 
 export default (state, action) => {
@@ -15,10 +16,9 @@ export default (state, action) => {
                 ...state, formulario: true
             }
         case OBTENER_PROYECTOS:
-            console.log(action.payload);
             return {
                 ...state,
-                proyectos: action.payload
+                proyectos: action.payload,
             }
         case AGREGAR_PROYECTO:
             return {
@@ -48,6 +48,12 @@ export default (state, action) => {
             return {
                 ...state,
                 mensaje: action.payload
+            }
+        case CERRAR_SESION:
+            return {
+                ...state,
+                proyectos: [],
+                proyecto: null
             }
         default:
             return state;

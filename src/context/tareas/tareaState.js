@@ -6,10 +6,10 @@ import {
     AGREGAR_TAREA,
     VALIDAR_TAREA,
     ELIMINAR_TAREA,
-    ESTADO_TAREA,
     TAREA_ACTUAL,
     ACTUALIZAR_TAREA,
-    LIMPIAR_TAREA
+    LIMPIAR_TAREA,
+    CERRAR_SESION
 } from '../../types';
 import clienteAxios from '../../config/axios';
 
@@ -34,7 +34,7 @@ const TareaState = (props) => {
                 payload: resultado.data.tareas
             })
         } catch (error) {
-            console.log(error);
+            console.log(error.response);
         }
     }
 
@@ -43,11 +43,12 @@ const TareaState = (props) => {
     const agregarTarea = async tarea => {
         try {
             const resultado = await clienteAxios.post('/api/tareas', tarea);
-            console.log(resultado);
-            dispatch({
-                type: AGREGAR_TAREA,
-                payload: tarea
-            })
+            if (resultado) {
+                dispatch({
+                    type: AGREGAR_TAREA,
+                    payload: resultado.data.tarea
+                })
+            }
         } catch (error) {
             console.log(error)
         }
@@ -62,7 +63,6 @@ const TareaState = (props) => {
 
     // Eliminar tarea por su id
     const eliminarTarea = async (id, proyecto) => {
-
         try {
             await clienteAxios.delete(`/api/tareas/${id}`, { params: { proyecto } })
         } catch (error) {
@@ -74,12 +74,17 @@ const TareaState = (props) => {
         })
     }
 
-    // Cambia el estado de cada tarea
-    const cambiarEstadoTarea = tarea => {
-        dispatch({
-            type: ESTADO_TAREA,
-            payload: tarea
-        })
+    // MODIFICA UNA TAREA 
+    const actualizarTarea = async tarea => {
+        try {
+            const resultado = await clienteAxios.put(`/api/tareas/${tarea._id}`, tarea);
+            dispatch({
+                type: ACTUALIZAR_TAREA,
+                payload: resultado.data.tarea,
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     // Extraer una tarea para edición
@@ -89,19 +94,18 @@ const TareaState = (props) => {
             payload: tarea
         })
     }
-    // MODIFICA UNA TAREA 
-    const actualizarTarea = tarea => {
-        dispatch({
-            type: ACTUALIZAR_TAREA,
-            payload: tarea,
-        })
-    }
 
     // Elimina la tarea seleccionada
 
     const limpiarTarea = () => {
         dispatch({
             type: LIMPIAR_TAREA
+        })
+    }
+    // Vaciar tareas del proyecto
+    const vaciarTareasProyecto = () =>{
+        dispatch({
+            type: CERRAR_SESION
         })
     }
     return (
@@ -114,10 +118,10 @@ const TareaState = (props) => {
                 agregarTarea,
                 validarTarea,
                 eliminarTarea,
-                cambiarEstadoTarea,
                 guardarTareaActual,
                 actualizarTarea,
                 limpiarTarea,
+                vaciarTareasProyecto
             }}
         >
             {props.children}
