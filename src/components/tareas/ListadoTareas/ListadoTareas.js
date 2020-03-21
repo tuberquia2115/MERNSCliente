@@ -13,7 +13,6 @@ const ListadoTareas = () => {
     // Extrayendo las tareas del context de tarea
     const tareasContext = useContext(TareaContext);
     const { tareasproyecto } = tareasContext;
-    console.log("estas son las tareas", tareasproyecto);
 
     // Si no hay proyecto seleccionado
 

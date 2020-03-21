@@ -46,7 +46,6 @@ const FormTarea = () => {
     // array destructuring para extraer el proyectos actual
     const [proyectoActual] = proyecto;
 
-    console.log("este es el proyecto actual", proyectoActual);
     // capturar el nombre de la tarea
     const handleChange = e => {
         guardarTarea({
