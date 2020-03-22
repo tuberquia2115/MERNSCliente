@@ -16,6 +16,7 @@ if (token) {
   tokenAuth(token);
 }
 
+console.log(process.env.REACT_APP_BACKEND_URL);
 function App() {
   return (
     <ProyectoState>
