@@ -50,7 +50,6 @@ const AuthState = props => {
     const usuarioAutenticado = async () => {
         
         const token = localStorage.getItem('token');
-        console.log("este es el token", token);
         if (token) {
             tokenAuth(token);
         }
@@ -73,7 +72,6 @@ const AuthState = props => {
     const iniciarSesion = async datos => {
         try {
             const respuesta = await clienteAxios.post('/api/auth', datos);
-            console.log(" esta es la data de unicio de sesión" ,respuesta.data)
             dispatch({
                 type: LOGIN_EXITOSO,
                 payload: respuesta.data
