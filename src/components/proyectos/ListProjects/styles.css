@@ -1,0 +1,15 @@
+.container {
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    flex-direction: column;
+    box-shadow: inset 0 -3em 3em rgb();
+    box-shadow: 5px 10px 10px 5px rgb(91, 99, 122);
+    margin: 1rem;
+}
+.containerIMG img {
+    border-radius: 100px;
+    border: 4px solid rgb(137, 144, 145)
+   
+}
